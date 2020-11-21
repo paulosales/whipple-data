@@ -1,7 +1,7 @@
 const path = require("path")
 const debug = require("debug")
 const PollingStationDataset = require("./polling-station-dataset")
-const { parseCsvFile, parseJsonFile, savePollingStations } = require("./utils")
+const { parseCsvFile, parseJsonFile, savePollingStations, compressFile } = require("./utils")
 
 const error = debug("whipple-data:main")
 const log = debug("whipple-data:main:log")
@@ -38,7 +38,8 @@ const convertAction = async (parametersFile) => {
       "dist",
       "polling-stations.json"
     )
-    savePollingStations(outputFile, pollingStations)
+    await savePollingStations(outputFile, pollingStations)
+    await compressFile(outputFile)
   } catch (e) {
     error("Error: %s", e.message)
     error(e.stack)

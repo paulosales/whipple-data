@@ -1,6 +1,7 @@
 const fs = require("fs")
 const parse = require("csv-parse/lib/sync")
 const debug = require("debug")
+const pako = require("pako")
 
 const log = debug("whipple-data:utils:log")
 log.log = console.log.bind(console)
@@ -42,4 +43,17 @@ const savePollingStations = async (outputFile, pollingStations) => {
   log("%d records saved into file %s", pollingStations.length, outputFile)
 }
 
-module.exports = { parseJsonFile, parseCsvFile, savePollingStations }
+const compressFile = async (file) => {
+  log("Compressing file %s", file)
+  const decompressedData = await fs.promises.readFile(file)
+  const compressedData = pako.deflate(decompressedData)
+  const compressedFile = `${file}.zip`
+
+  await fs.promises.writeFile(
+    compressedFile,
+    compressedData
+  )
+  log("File %s compressed to %s", file, compressedFile)
+}
+
+module.exports = { parseJsonFile, parseCsvFile, savePollingStations, compressFile }
