@@ -47,7 +47,7 @@ const compressFile = async (file) => {
   log("Compressing file %s", file)
   const decompressedData = await fs.promises.readFile(file)
   const compressedData = pako.deflate(decompressedData)
-  const compressedFile = `${file}.zip`
+  const compressedFile = `${file}.data`
 
   await fs.promises.writeFile(
     compressedFile,
