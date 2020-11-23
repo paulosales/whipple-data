@@ -31,7 +31,7 @@ function PollingStationDataset() {
 
     log("Creating polling stations array")
     for (let key of keys) {
-      pollingStationsMap[key].distributedPollingStations =
+      pollingStationsMap[key].distributedPollingStationsNumbers =
         distributedPollingStationsMap[key]
       pollingStation.push(pollingStationsMap[key])
     }
@@ -112,7 +112,7 @@ function PollingStationDataset() {
       neighborhood: treRecord["BAIRRO"],
       city: treRecord["MUNICIPIO"],
       groupedPollingStations: [],
-      distributedPollingStations: [],
+      distributedPollingStationsNumbers: [],
       elections: [],
     }
   }
@@ -126,7 +126,7 @@ function PollingStationDataset() {
       neighborhood: "",
       city: treRecord["MUNIC_ORIGEM"],
       groupedPollingStations: [],
-      distributedPollingStations: [],
+      distributedPollingStationsNumbers: [],
       elections: [],
     }
   }
