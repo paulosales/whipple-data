@@ -106,7 +106,7 @@ function PollingStationDataset() {
   const convertTreRecordToPollingStation = (treRecord) => {
     return {
       zone: Number.parseInt(treRecord["ZONA"]),
-      number: Number.parseInt(treRecord["SECAO_PRINCIPAL"]),
+      pollingStationNumber: Number.parseInt(treRecord["SECAO_PRINCIPAL"]),
       place: treRecord["LOCAL"],
       address: treRecord["ENDERECO"],
       neighborhood: treRecord["BAIRRO"],
@@ -120,7 +120,7 @@ function PollingStationDataset() {
   const convertTreLinkRecordToPollingStation = (treRecord) => {
     return {
       zone: Number.parseInt(treRecord["ZONA_ORIGEM"]),
-      number: Number.parseInt(treRecord["SECAO_ORIGEM"]),
+      pollingStationNumber: Number.parseInt(treRecord["SECAO_ORIGEM"]),
       place: treRecord["LOCAL_ORIGEM"],
       address: "",
       neighborhood: "",
